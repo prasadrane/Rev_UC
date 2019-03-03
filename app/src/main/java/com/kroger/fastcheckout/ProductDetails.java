@@ -97,7 +97,6 @@ public class ProductDetails extends AppCompatActivity {
         ct.addProducts(productToAdd);
 
         ShowCart();
-
     }
 
     public void DecrementQuantity () {

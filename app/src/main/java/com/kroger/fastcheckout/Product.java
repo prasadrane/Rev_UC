@@ -15,7 +15,6 @@ public class Product implements Serializable {
         this.productName = productName;
         this.productDesc = productDesc;
         this.productPrice = productPrice;
-        this.productPrice = 1;
         this.serialNumber = serialNumber;
     }
 

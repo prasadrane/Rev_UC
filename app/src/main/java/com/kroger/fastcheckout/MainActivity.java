@@ -12,6 +12,8 @@ import android.support.v4.app.ActivityCompat;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.vision.CameraSource;
@@ -46,6 +48,7 @@ public class MainActivity extends Activity {
     TextView txtError;
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
+    Button btnCart;
     final int RequestCameraPermissionID = 1001;
     int retryCounter = 0;
 
@@ -56,6 +59,13 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        btnCart = findViewById(R.id.btnCart);
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToCart();
+            }
+        });
         cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
 
         txtError = (TextView) findViewById(R.id.txtError);
@@ -139,6 +149,12 @@ public class MainActivity extends Activity {
                 }
             }
         });
+    }
+
+    public void goToCart()
+    {
+        Intent intent = new Intent(this, MainCart.class);
+        startActivity(intent);
     }
 
     public void openCart(Product product) {
