@@ -3,9 +3,7 @@ package com.kroger.fastcheckout;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.annotation.NonNull;
@@ -15,9 +13,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
@@ -47,18 +43,22 @@ public class MainActivity extends Activity {
     }
 
     SurfaceView cameraPreview;
-    TextView txtResult;
+    TextView txtError;
     BarcodeDetector barcodeDetector;
     CameraSource cameraSource;
     final int RequestCameraPermissionID = 1001;
+    int retryCounter = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        retryCounter = 0;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         cameraPreview = (SurfaceView) findViewById(R.id.cameraPreview);
-        txtResult = (TextView) findViewById(R.id.txtResult);
+
+        txtError = (TextView) findViewById(R.id.txtError);
+
 
         barcodeDetector = new BarcodeDetector.Builder(this)
                 //.setBarcodeFormats(Barcode.QR_CODE)
@@ -106,18 +106,28 @@ public class MainActivity extends Activity {
 
             @Override
             public void receiveDetections(Detector.Detections<Barcode> detections) {
+
+
                 final SparseArray<Barcode> qrcode = detections.getDetectedItems();
                 if(qrcode.size() != 0)
                 {
-                    txtResult.post(new Runnable() {
+                    txtError.post(new Runnable() {
                         @Override
                         public void run() {
                             // Create Vibration
                             Vibrator vibrator = (Vibrator) getApplicationContext().getSystemService(Context.VIBRATOR_SERVICE);
                             vibrator.vibrate(1000);
-                            txtResult.setText(qrcode.valueAt(0).displayValue);
+
+                            // We need to navigate to details page for "Add to cart"
+                            txtError.setText(qrcode.valueAt(0).displayValue);
                         }
                     });
+                }
+                // Wait for sometime for stabilize
+               try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
             }
         });
