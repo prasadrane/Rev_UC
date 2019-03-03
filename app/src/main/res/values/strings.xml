@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Fast Checkout</string>
+    <string name="result_text_default">Please focus camera to scan</string>
 </resources>
