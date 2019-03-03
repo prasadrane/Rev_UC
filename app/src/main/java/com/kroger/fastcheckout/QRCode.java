@@ -18,10 +18,26 @@ public class QRCode extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrcode);
 
+        Controller ct = (Controller) getApplicationContext();
+        String qr = "";
+
+        if(ct.getProductArraylistsize() == 0){
+            qr = "null";
+        }
+        else{
+            for(int i = 0; i < ct.getProductArraylistsize(); i++){
+                Product p = ct.getProducts(i);
+                qr += p.getSerialNumber();
+                qr += " ";
+                qr += p.getQuantity();
+                qr += ",";
+            }
+        }
+
         try {
             QRCodeWriter qrCodeWriter = new QRCodeWriter();
             // generate a 150x150 QR code
-            BitMatrix bm = qrCodeWriter.encode("XYSSHDKSKMJSJDNSN", BarcodeFormat.QR_CODE, 300, 300);
+            BitMatrix bm = qrCodeWriter.encode(qr, BarcodeFormat.QR_CODE, 300, 300);
 
             Bitmap bmp = Bitmap.createBitmap(300, 300, Bitmap.Config.RGB_565);
             for (int x = 0; x < 300; x++) {

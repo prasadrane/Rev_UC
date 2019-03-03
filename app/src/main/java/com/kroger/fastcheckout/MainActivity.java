@@ -125,6 +125,7 @@ public class MainActivity extends Activity {
                                 openCart(product);
                             }
                             else{
+
                                 txtError.setText("Item Not Found!");
                             }
                         }
