@@ -138,12 +138,6 @@ public class MainActivity extends Activity {
                 }
             }
         });
-
-        DummyDataHelper dummyDataHelper = new DummyDataHelper();
-        Product product = dummyDataHelper.GetProductFromLookup("03424102");
-                            if (product != null) {
-                                openCart(product);
-                            }
     }
 
     public void openCart(Product product) {
