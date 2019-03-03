@@ -19,4 +19,15 @@ public class Controller extends Application {
     public int  getProductArraylistsize(){
         return myproducts.size();
     }
+
+    public int getGrandTotal()
+    {
+        int total = 0;
+        for(int i=0; i < myproducts.size(); i++)
+        {
+            total += myproducts.get(i).getPrice() * myproducts.get(i).getQuantity();
+        }
+        return total;
+    }
+
 }

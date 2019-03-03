@@ -60,6 +60,7 @@
             android:layout_weight="1"
             android:ems="10"
             android:inputType="numberSigned"
+            android:textAlignment="center"
             android:textSize="20sp" />
 
         <Button

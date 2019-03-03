@@ -27,11 +27,16 @@ public class QRCode extends AppCompatActivity {
         else{
             for(int i = 0; i < ct.getProductArraylistsize(); i++){
                 Product p = ct.getProducts(i);
-                qr += p.getSerialNumber();
-                qr += " ";
-                qr += p.getQuantity();
-                qr += ",";
+                qr += p.getName();
+                qr += "\t";
+                qr += p.getQuantity() + " items";
+                qr += "\t Price: $";
+                qr += p.getPrice();
+                qr += "\n Subtotal: $";
+                qr += (p.getPrice() * p.getQuantity());
+                qr += "\n";
             }
+            qr += "Grand Total: $" + ct.getGrandTotal();
         }
 
         try {

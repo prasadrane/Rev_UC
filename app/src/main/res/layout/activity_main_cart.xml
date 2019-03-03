@@ -23,17 +23,15 @@
         android:id="@+id/linearMain"
         >
     </LinearLayout>
-    <Button android:id="@+id/second"
+    <Button
+        android:id="@+id/scanAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Checkout"
-        />
-    <ImageButton
-        android:id="@+id/searchImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:src="@android:drawable/ic_menu_search" />
+        android:text="Scan Again" />
 
+    <Button
+        android:id="@+id/second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Checkout" />
 </LinearLayout>
