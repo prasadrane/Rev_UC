@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ProductDetails extends AppCompatActivity implements View.OnClickListener {
+public class ProductDetails extends AppCompatActivity {
 
     Product productToAdd;
 
@@ -100,34 +100,24 @@ public class ProductDetails extends AppCompatActivity implements View.OnClickLis
 
     }
 
-    @Override
-    public void onClick(View view)
-    {
-        btnMinusQuantity = findViewById(R.id.btnMinus);
-        btnPlusQuantity =  findViewById(R.id.btnPlus);
-
-        switch (view.getId()) {
-            case R.id.btnMinus:
-                // Do something
-
-                break;
-            case R.id.btnPlus:
-
-                break;
-        }
-    }
-
     public void DecrementQuantity () {
         String quantity = txtQuantity.getText().toString();
 
         int originalQuantity = Integer.parseInt(quantity);
 
+        if (originalQuantity>0)
         originalQuantity--;
 
         txtQuantity.setText(""+originalQuantity);
     }
 
     public void IncrementQuantity () {
+        String quantity = txtQuantity.getText().toString();
 
+        int originalQuantity = Integer.parseInt(quantity);
+
+        originalQuantity++;
+
+        txtQuantity.setText(""+originalQuantity);
     }
 }
