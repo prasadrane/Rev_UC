@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class ProductDetails extends AppCompatActivity {
+public class ProductDetails extends AppCompatActivity implements View.OnClickListener {
 
     Product productToAdd;
 
@@ -16,6 +16,8 @@ public class ProductDetails extends AppCompatActivity {
     TextView txtDescription;
     TextView txtPrice;
     EditText txtQuantity;
+    Button btnMinusQuantity;
+    Button btnPlusQuantity;
     Button btnCancel;
     Button btnAddToCart;
 
@@ -58,6 +60,23 @@ public class ProductDetails extends AppCompatActivity {
                 AddToCart();
             }
         });
+
+        btnMinusQuantity = findViewById(R.id.btnMinus);
+        btnMinusQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DecrementQuantity();
+            }
+        });
+
+        btnPlusQuantity = findViewById(R.id.btnPlus);
+        btnPlusQuantity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IncrementQuantity();
+            }
+        });
+
     }
 
     public void ContinueScanning() {
@@ -78,6 +97,37 @@ public class ProductDetails extends AppCompatActivity {
         ct.addProducts(productToAdd);
 
         ShowCart();
+
+    }
+
+    @Override
+    public void onClick(View view)
+    {
+        btnMinusQuantity = findViewById(R.id.btnMinus);
+        btnPlusQuantity =  findViewById(R.id.btnPlus);
+
+        switch (view.getId()) {
+            case R.id.btnMinus:
+                // Do something
+
+                break;
+            case R.id.btnPlus:
+
+                break;
+        }
+    }
+
+    public void DecrementQuantity () {
+        String quantity = txtQuantity.getText().toString();
+
+        int originalQuantity = Integer.parseInt(quantity);
+
+        originalQuantity--;
+
+        txtQuantity.setText(""+originalQuantity);
+    }
+
+    public void IncrementQuantity () {
 
     }
 }
